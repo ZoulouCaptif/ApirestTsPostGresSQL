@@ -7,7 +7,6 @@ import { EntityManager, EntityRepository, MikroORM, RequestContext } from '@mikr
 
 import { TaskController } from './controllers';
 import { Task } from './entities';
-import {SqlHighlighter} from "@mikro-orm/sql-highlighter";
 
 export const DI = {} as {
   orm: MikroORM,
