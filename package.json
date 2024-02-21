@@ -1,0 +1,65 @@
+{
+  "name": "mikro-orm-koa-ts-example",
+  "version": "0.0.1",
+  "description": "Example integration of MikroORM into Koa (in typescript)",
+  "author": "Martin Adamek",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/server",
+    "start:dev": "nodemon --watch 'app/**/*.ts' --exec 'ts-node' --transpile-only app/server.ts",
+    "build": "tsc"
+  },
+  "renovate": {
+    "extends": [
+      "config:base",
+      ":preserveSemverRanges",
+      ":semanticCommitTypeAll(chore)"
+    ],
+    "semanticCommits": "enabled",
+    "separateMajorMinor": false,
+    "dependencyDashboard": false,
+    "packageRules": [
+      {
+        "matchUpdateTypes": [
+          "patch",
+          "minor"
+        ],
+        "groupName": "patch/minor dependencies",
+        "groupSlug": "all-non-major",
+        "automerge": true,
+        "automergeType": "branch"
+      }
+    ],
+    "schedule": [
+      "every weekday"
+    ]
+  },
+  "dependencies": {
+    "@mikro-orm/better-sqlite": "^6.0.0",
+    "@mikro-orm/core": "^6.0.0",
+    "@mikro-orm/postgresql": "^6.1.4",
+    "@mikro-orm/sql-highlighter": "^1.0.1",
+    "koa": "^2.15.0",
+    "koa-body": "^6.0.1",
+    "koa-router": "^12.0.1",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "typescript": "5.3.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^6.0.0",
+    "@types/koa": "^2.14.0",
+    "@types/koa-router": "^7.4.8",
+    "@types/node": "^20.11.16",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./app/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
+  }
+}

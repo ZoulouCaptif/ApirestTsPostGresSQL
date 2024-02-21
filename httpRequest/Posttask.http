@@ -1,0 +1,10 @@
+//Post a Task
+POST http://localhost:3000/Task
+Content-Type: application/json
+
+{
+    "name": "test add in DB by api",
+    "date": "2021-01-01",
+    "status": false,
+    "hide": false
+}
