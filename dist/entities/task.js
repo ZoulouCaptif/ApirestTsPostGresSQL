@@ -16,12 +16,10 @@ let Task = class Task {
     name;
     date;
     status;
-    hide;
     constructor(name, date, status, hide) {
         this.name = name;
         this.date = date;
         this.status = status;
-        this.hide = hide;
     }
 };
 exports.Task = Task;
@@ -41,10 +39,6 @@ __decorate([
     (0, better_sqlite_1.Property)(),
     __metadata("design:type", Boolean)
 ], Task.prototype, "status", void 0);
-__decorate([
-    (0, better_sqlite_1.Property)(),
-    __metadata("design:type", Boolean)
-], Task.prototype, "hide", void 0);
 exports.Task = Task = __decorate([
     (0, better_sqlite_1.Entity)(),
     __metadata("design:paramtypes", [String, String, Boolean, Boolean])

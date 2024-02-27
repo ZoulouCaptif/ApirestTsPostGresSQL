@@ -15,14 +15,10 @@ export class Task {
   @Property()
   status:boolean
 
-  @Property()
-  hide:boolean
-
   constructor(name: string, date: string, status:boolean, hide:boolean) {
     this.name = name;
     this.date = date;
     this.status = status;
-    this.hide = hide;
   }
 }
 

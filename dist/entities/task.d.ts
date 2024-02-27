@@ -3,6 +3,5 @@ export declare class Task {
     name: string;
     date: string;
     status: boolean;
-    hide: boolean;
     constructor(name: string, date: string, status: boolean, hide: boolean);
 }

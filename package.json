@@ -35,6 +35,7 @@
     ]
   },
   "dependencies": {
+    "@koa/cors": "^5.0.0",
     "@mikro-orm/better-sqlite": "^6.0.0",
     "@mikro-orm/core": "^6.0.0",
     "@mikro-orm/postgresql": "^6.1.4",

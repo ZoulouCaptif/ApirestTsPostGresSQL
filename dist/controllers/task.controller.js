@@ -7,7 +7,6 @@ exports.TaskController = void 0;
 const better_sqlite_1 = require("@mikro-orm/better-sqlite");
 const koa_router_1 = __importDefault(require("koa-router"));
 const server_1 = require("../server");
-const zod_1 = require("zod");
 const entities_1 = require("../entities");
 const router = new koa_router_1.default();
 router.get('/', async (ctx) => {
@@ -16,9 +15,11 @@ router.get('/', async (ctx) => {
     });
 });
 router.get('/:status', async (ctx) => {
+    console.log("task");
+    console.log("params.status");
     try {
-        const params = zod_1.z.object({ status: zod_1.z.boolean() }).parse(ctx['params']);
-        const task = await server_1.DI.tasks.find({ status: params.status });
+        const status = ctx.params.status === 'true';
+        const task = await server_1.DI.tasks.find({ status: status });
         if (!task) {
             return ctx.throw(404, { message: 'No task was found' });
         }
@@ -45,14 +46,30 @@ router.post('/', async (ctx) => {
 });
 router.put('/:id', async (ctx) => {
     try {
-        const params = zod_1.z.object({ id: zod_1.z.number() }).parse(ctx['params']);
-        const task = await server_1.DI.tasks.findOne(params.id);
+        const id = parseInt(ctx.params.id, 10); // Convertit l'ID de la tâche de string à number
+        const task = await server_1.DI.tasks.findOne({ id: id });
         if (!task) {
             return ctx.throw(404, { message: 'Task not found' });
         }
-        server_1.DI.em.assign(entities_1.Task, ctx.request.body);
-        await server_1.DI.em.flush();
+        task.status = !task.status; // Change the status of the task
+        await server_1.DI.em.persistAndFlush(task); // Save the changes
         ctx.body = task;
+    }
+    catch (e) {
+        console.error(e);
+        return ctx.throw(400, { message: e.message });
+    }
+});
+router.delete('/:id', async (ctx) => {
+    try {
+        const id = parseInt(ctx.params.id, 10); // Convertit l'ID de la tâche de string à number
+        const task = await server_1.DI.tasks.findOne({ id: id });
+        if (!task) {
+            return ctx.throw(404, { message: 'Task not found' });
+        }
+        await server_1.DI.em.removeAndFlush(task); // Supprime la tâche trouvée
+        ctx.status = 200; // Réponse HTTP pour indiquer que la requête a réussi
+        ctx.body = { message: 'Task deleted successfully' };
     }
     catch (e) {
         console.error(e);

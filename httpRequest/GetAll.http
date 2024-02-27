@@ -1,2 +1,2 @@
 //get  all
-GET http://localhost:3000/Task
+GET http://localhost:3000/Tasks

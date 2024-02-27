@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@koa/cors':
+    specifier: ^5.0.0
+    version: 5.0.0
   '@mikro-orm/better-sqlite':
     specifier: ^6.0.0
     version: 6.1.4(@mikro-orm/core@6.1.4)(pg@8.11.3)
@@ -91,6 +94,13 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
+
+  /@koa/cors@5.0.0:
+    resolution: {integrity: sha512-x/iUDjcS90W69PryLDIMgFyV21YLTnG9zOpPXS7Bkt2b8AsY3zZsIpOLBkYr9fBcF3HbkKaER5hOBZLfpLgYNw==}
+    engines: {node: '>= 14.0.0'}
+    dependencies:
+      vary: 1.1.2
+    dev: false
 
   /@mikro-orm/better-sqlite@6.1.4(@mikro-orm/core@6.1.4)(pg@8.11.3):
     resolution: {integrity: sha512-nza9qZ2tJyQrUgf8t/wiu8AiGy/nSm2TUVsfSXk7xna+kIPzqNgwxeYf8V1N3aXGZmgXKE9umSpofQnetjuGpg==}

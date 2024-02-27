@@ -1,2 +1,2 @@
 //get by status
-GET http://localhost:3000/Task/?status=true
+GET http://localhost:3000/Task/true
